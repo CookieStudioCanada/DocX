@@ -12,9 +12,25 @@
 
   <body>
 
-    <h1>DOCX browser Word document generation</h1>
+    <h1>Note de planification</h1>
 
-    <button type="button" onclick="generate()">Click to generate document</button>
+    <h3>Steps</h3>
+    <form>
+      <select id="options" onchange="addStepForm()">
+        <option value="incorporation">1) Incorporation</option> 
+        <option value="dissolution">2) Dissolution</option>
+        <option value="vente d'actions">3) Vente d'actions</option>
+        <option value="dividendes">4) Dividendes</option>
+      </select>
+      <p id="step-form"></p>
+      <button type="button" onclick="addToArray()">Add step</button>
+    </form>
+
+    <h3>Steps by steps</h3>
+    <ul id="result"></ul>
+
+    <h3>Generate a doc</h3>
+    <button type="button" onclick="generate()">Create a document</button>
 
     <script src="app.js"></script>
 
