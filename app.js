@@ -31,60 +31,79 @@ function addToArray() {
   displayArray(); // ajouter l'etape a la liste
 }
 
-// Lists 
-// Le probleme c'est que les objets doivent tous avoir les memes values... (name, date, shares)
-// Comment que le inner HTML peut etre plus detailler, faire un tableau?
-var list = document.getElementById("result");
+var table = document.getElementById("result");
 function displayArray() {
-  list.innerHTML = "";
+  table.innerHTML = "";
+  var tableElem = document.createElement("table");
+  var headerRow = document.createElement("tr");
+  var headerCell1 = document.createElement("th");
+  headerCell1.innerHTML = "Step Number";
+  headerRow.appendChild(headerCell1);
+  var headerCell2 = document.createElement("th");
+  headerCell2.innerHTML = "Step";
+  headerRow.appendChild(headerCell2);
+  var headerCell3 = document.createElement("th");
+  headerCell3.innerHTML = "Date";
+  headerRow.appendChild(headerCell3);
+  tableElem.appendChild(headerRow);
   for (var i = 0; i < optionsArray.length; i++) {
-    var item = document.createElement("li");
-    item.innerHTML = "Step : " + optionsArray[i].name + ". Date : " + optionsArray[i].date;
-    list.appendChild(item);
-  }}
+    var row = document.createElement("tr");
+    var cell1 = document.createElement("td");
+    cell1.innerHTML = i + 1;
+    row.appendChild(cell1);
+    var cell2 = document.createElement("td");
+    cell2.innerHTML = optionsArray[i].name;
+    row.appendChild(cell2);
+    var cell3 = document.createElement("td");
+    cell3.innerHTML = optionsArray[i].date;
+    row.appendChild(cell3);
+    tableElem.appendChild(row);
+  }
+  table.appendChild(tableElem);
+}
 
   var optionTexts = {
     "incorporation": 
-      "<p>Incorporation text goes here...</p>" +
-      "Nom : <input placeholder='Nom' id='option-company'><br>" + 
-      "Date : <input placeholder='Date' id='option-date'><br>" +
-      "Shares : <input placeholder='Number of shares' id='option-shares'><br>" +
+      "Incorporation text goes here...<br><br>" +
+      "Nom : <input placeholder='Nom' id='option-company'><br><br>" + 
+      "Date : <input placeholder='Date' id='option-date'><br><br>" +
+      "Shares : <input placeholder='Number of shares' id='option-shares'><br><br>" +
       "Price : <input placeholder='Price of shares' id='option-price'>",
     "dissolution": 
-      "<p>Dissolution text goes here...</p>" +
-      "Company : <input placeholder='Company' id='option-company'><br>" + 
-      "Date : <input placeholder='Date' id='option-date'><br>" +
+      "Dissolution text goes here...<br><br>" +
+      "Company : <input placeholder='Company' id='option-company'><br><br>" + 
+      "Date : <input placeholder='Date' id='option-date'>" +
       "<a id='option-shares'></a>" + // invisible...
       "<a id='option-price'></a>", // invisible...
     "vente d'actions": 
-      "<p>Vente d'actions text goes here...</p>" +
-      "Company : <input placeholder='Company' id='option-company'><br>" + 
-      "Date : <input placeholder='Date' id='option-date'><br>" +
-      "Shares : <input placeholder='Number of shares' id='option-shares'><br>" +
-      "Price : <input placeholder='Total price' id='option-price'><br>",
+      "Vente d'actions text goes here...<br><br>" +
+      "Company : <input placeholder='Company' id='option-company'><br><br>" + 
+      "Date : <input placeholder='Date' id='option-date'><br><br>" +
+      "Shares : <input placeholder='Number of shares' id='option-shares'><br><br>" +
+      "Price : <input placeholder='Total price' id='option-price'>",
     "dividendes": 
-      "<p>Dividendes text goes here...</p>" +
-      "Company : <input placeholder='Company' id='option-company'><br>" + 
-      "Date : <input placeholder='Date' id='option-date'><br>" +
-      "Price : <input placeholder='Total of dividends' id='option-price'><br>" + 
+      "Dividendes text goes here...<br><br>" +
+      "Company : <input placeholder='Company' id='option-company'><br><br>" + 
+      "Date : <input placeholder='Date' id='option-date'><br><br>" +
+      "Price : <input placeholder='Total of dividends' id='option-price'>" + 
       "<a id='option-shares'></a>", // invisible...
     "fiducie":
-      "<p>Fiducie text goes here...</p>" +
-      "Nom : <input placeholder='Nom' id='option-company'><br>" + 
-      "Date : <input placeholder='Date' id='option-date'><br>" +
+      "Fiducie text goes here...<br><br>" +
+      "Nom : <input placeholder='Nom' id='option-company'><br><br>" + 
+      "Date : <input placeholder='Date' id='option-date'>" +
       "<a id='option-price'></a>" + // invisible... + 
       "<a id='option-shares'></a>", // invisible...
     "echange":
-      "<p>Echange text goes here...</p>" +
-      "Company : <input placeholder='Company' id='option-company'><br>" + 
-      "Date : <input placeholder='Date' id='option-date'><br>" +
-      "Shares : <input placeholder='Number of shares' id='option-shares'><br>" +
-      "Contrepartie : <input placeholder='Contrepartie' id='option-price'><br>",
+      "Echange text goes here...<br><br>" +
+      "Company : <input placeholder='Company' id='option-company'><br><br>" + 
+      "Date : <input placeholder='Date' id='option-date'><br><br>" +
+      "Shares : <input placeholder='Number of shares' id='option-shares'><br><br>" +
+      "Contrepartie : <input placeholder='Contrepartie' id='option-price'>",
     "souscription":
-      "<p>Souscription text goes here...</p>" +
-      "Company : <input placeholder='Company' id='option-company'><br>" + 
-      "Date : <input placeholder='Date' id='option-date'><br>" +
-      "Price : <input placeholder='Total of dividends' id='option-price'><br>" + 
+      "Souscription text goes here...<br><br>" +
+      "Company : <input placeholder='Company' id='option-company'><br><br>" + 
+      "Date : <input placeholder='Date' id='option-date'><br><br>" +
+      "Price : <input placeholder='Total of dividends' id='option-price'>" + 
       "<a id='option-shares'></a>", // invisible...
   };
 

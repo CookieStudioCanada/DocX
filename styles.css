@@ -1,0 +1,127 @@
+html, body {
+    overflow-x: hidden;
+}
+  
+body {
+    text-align: justify;
+    font-family:'Calibri';
+    margin: 0;
+    position: relative
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+  }
+
+  td {
+    background-color: white;
+  }
+  
+  th {
+    background-color: green;
+  }
+
+.section {
+    margin: 0px;
+    padding: 10px;
+}
+select {
+    appearance: none;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    font-size: 16px;
+  }
+  
+  select::-ms-expand {
+    display: none;
+  }
+  
+  .select-selected {
+    background-color: #fff;
+  }
+  
+  .select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+  }
+  
+  .select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+  }
+  
+  .select-items div, .select-selected {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .select-items {
+    position: absolute;
+    background-color: #f9f9f9;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+  }
+  
+  .select-hide {
+    display: none;
+  }
+  
+  .select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  button {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #3e8e41;
+  }
+
+h1 {
+    text-align: center;
+    margin: 10px
+}
+
+h3 {
+    text-decoration: underline;
+}
+
+#step-form {
+    margin: 10px 0;
+}
+
+#result {
+    margin: 0;
+    padding: 0;
+}
