@@ -17,10 +17,14 @@
     <h3>Steps</h3>
     <form>
       <select id="options" onchange="addStepForm()">
+        <option>Enter your steps</option> 
         <option value="incorporation">1) Incorporation</option> 
         <option value="dissolution">2) Dissolution</option>
         <option value="vente d'actions">3) Vente d'actions</option>
         <option value="dividendes">4) Dividendes</option>
+        <option value="fiducie">5) Création d'une fiducie</option>
+        <option value="echange">6) Échange d'actions</option>
+        <option value="souscription">7) Souscription d'actions</option>
       </select>
       <p id="step-form"></p>
       <button type="button" onclick="addToArray()">Add step</button>
