@@ -5,6 +5,7 @@ var optionCompany; // Changer pour Company-Name
 var optionShares;
 var optionDate;
 var optionPrice; // Changer pour "contrepartie"
+var optionComments;
 
 // To be able to get default value
 var selectedOption = {
@@ -12,7 +13,8 @@ var selectedOption = {
   company: optionCompany || "N/A",
   shares: optionShares || "N/A",
   date: optionDate || "N/A",
-  price: optionPrice || "N/A"
+  price: optionPrice || "N/A",
+  comments: optionComments || "N/A"
 };
 
 function addToArray() {
@@ -22,7 +24,8 @@ function addToArray() {
   optionShares = document.getElementById("option-shares").value;
   optionDate = document.getElementById("option-date").value;
   optionPrice = document.getElementById("option-price").value;
-  selectedOption = {name: optionName, shares: optionShares, date: optionDate, price: optionPrice, company: optionCompany}; 
+  optionComments = document.getElementById("option-comments").value;
+  selectedOption = {name: optionName, shares: optionShares, date: optionDate, price: optionPrice, company: optionCompany, comments: optionComments}; 
 
   optionsArray.push(selectedOption);
 
@@ -64,47 +67,53 @@ function displayArray() {
 
   var optionTexts = {
     "incorporation": 
-      "Incorporation text goes here...<br><br>" +
       "Nom : <input placeholder='Nom' id='option-company'><br><br>" + 
       "Date : <input placeholder='Date' id='option-date'><br><br>" +
-      "Shares : <input placeholder='Number of shares' id='option-shares'><br><br>" +
-      "Price : <input placeholder='Price of shares' id='option-price'>",
+      "Actions : <input placeholder='Nombre et catégories' id='option-shares'><br><br>" +
+      "Prix de souscription : <input placeholder='Prix de souscription' id='option-price'>" +
+      "<a id='option-comments'></a>", // invisible...
     "dissolution": 
-      "Dissolution text goes here...<br><br>" +
-      "Company : <input placeholder='Company' id='option-company'><br><br>" + 
+      "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "Date : <input placeholder='Date' id='option-date'>" +
       "<a id='option-shares'></a>" + // invisible...
-      "<a id='option-price'></a>", // invisible...
+      "<a id='option-price'></a>" + // invisible...
+      "<a id='option-comments'></a>", // invisible...
     "vente d'actions": 
-      "Vente d'actions text goes here...<br><br>" +
-      "Company : <input placeholder='Company' id='option-company'><br><br>" + 
+      "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "Date : <input placeholder='Date' id='option-date'><br><br>" +
-      "Shares : <input placeholder='Number of shares' id='option-shares'><br><br>" +
-      "Price : <input placeholder='Total price' id='option-price'>",
+      "Actions : <input placeholder='Nombre et catégories' id='option-shares'><br><br>" +
+      "Prix de vente : <input placeholder='Prix de vente' id='option-price'>" +
+      "<a id='option-comments'></a>", // invisible...
     "dividendes": 
-      "Dividendes text goes here...<br><br>" +
-      "Company : <input placeholder='Company' id='option-company'><br><br>" + 
+      "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "Date : <input placeholder='Date' id='option-date'><br><br>" +
-      "Price : <input placeholder='Total of dividends' id='option-price'>" + 
-      "<a id='option-shares'></a>", // invisible...
+      "Montant du dividende : <input placeholder='Montant du dividende' id='option-price'>" + 
+      "<a id='option-shares'></a>" + // invisible...
+      "<a id='option-comments'></a>", // invisible...
     "fiducie":
-      "Fiducie text goes here...<br><br>" +
       "Nom : <input placeholder='Nom' id='option-company'><br><br>" + 
       "Date : <input placeholder='Date' id='option-date'>" +
-      "<a id='option-price'></a>" + // invisible... + 
-      "<a id='option-shares'></a>", // invisible...
+      "<a id='option-price'></a>" + // invisible... 
+      "<a id='option-shares'></a>" + // invisible...
+      "<a id='option-comments'></a>", // invisible...
     "echange":
-      "Echange text goes here...<br><br>" +
-      "Company : <input placeholder='Company' id='option-company'><br><br>" + 
+      "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "Date : <input placeholder='Date' id='option-date'><br><br>" +
-      "Shares : <input placeholder='Number of shares' id='option-shares'><br><br>" +
-      "Contrepartie : <input placeholder='Contrepartie' id='option-price'>",
+      "Actions : <input placeholder='Nombre et catégories' id='option-shares'><br><br>" +
+      "Contrepartie : <input placeholder='Contrepartie en actions' id='option-price'>" + 
+      "<a id='option-comments'></a>", // invisible...
     "souscription":
-      "Souscription text goes here...<br><br>" +
-      "Company : <input placeholder='Company' id='option-company'><br><br>" + 
+      "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "Date : <input placeholder='Date' id='option-date'><br><br>" +
-      "Price : <input placeholder='Total of dividends' id='option-price'>" + 
-      "<a id='option-shares'></a>", // invisible...
+      "Prix de souscription : <input placeholder='Prix de souscription' id='option-price'>" +
+      "<a id='option-shares'></a>" + // invisible...
+      "<a id='option-comments'></a>", // invisible...
+    "other":
+      "Description de l'étape : <input placeholder='Description' id='option-comments'><br><br>" + 
+      "Société : <input placeholder='Société' id='option-company'><br><br>" + 
+      "Date : <input placeholder='Date' id='option-date'><br><br>" +
+      "Actions : <input placeholder='Nombre et catégories' id='option-shares'><br><br>" +
+      "Contrepartie : <input placeholder='Contrepartie' id='option-price'>",
   };
 
   // Le texte qu'on va voir dans le document word
@@ -126,7 +135,17 @@ function displayArray() {
       "Le ${optionsArray[step-number].date}, actionnaire X échangera ${optionsArray[step-number].shares} de la société ${optionsArray[step-number].company} contre les actions suivantes : ${optionsArray[step-number].price}.",
     "souscription":
       "Le ${optionsArray[step-number].date}, actionnaire X souscrira à ${optionsArray[step-number].shares} de la société ${optionsArray[step-number].company} pour un montant de ${optionsArray[step-number].price}$.",
-    }
+    "other":
+      "Description : ${optionsArray[step-number].comments}" +
+      "\n\n" +
+      "Date : ${optionsArray[step-number].date}" +
+      "\n\n" +
+      "Compagnie : ${optionsArray[step-number].company}" +
+      "\n\n" +
+      "Actions : ${optionsArray[step-number].shares}" +
+      "\n\n" +
+      "Contrepartie : ${optionsArray[step-number].price}",
+  }
   
   // OnChange dans le dropdown, pour afficher "optionTexts"
   function addStepForm() {
