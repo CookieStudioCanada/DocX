@@ -180,49 +180,49 @@ function displayArray() {
 // Les textes pour les inputs
 var optionTexts = {
     "incorporation": 
-      "Date : <input type='date' placeholder='Date' id='option-date'><br><br>" +
+      "Date : <br><input type='date' placeholder='Date' id='option-date'><br><br>" +
       "Nom : <input placeholder='Nom' id='option-company'><br><br>" + 
       "Actions : <input placeholder='Nombre et catégories' id='option-shares'><br><br>" +
       "Prix de souscription : <input placeholder='Prix de souscription' id='option-price'><br><br>" +
       "Commentaires : <input placeholder='Description' id='option-comments'>",
     "dissolution": 
-      "Date : <input type='date' placeholder='Date' id='option-date'>" +
+      "Date : <br><input type='date' placeholder='Date' id='option-date'>" +
       "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "<a id='option-shares'></a>" + // invisible...
       "<a id='option-price'></a>" + // invisible...
       "Commentaires : <input placeholder='Description' id='option-comments'>",
     "vente d'actions": 
-      "Date : <input type='date' placeholder='Date' id='option-date'><br><br>" +
+      "Date : <br><input type='date' placeholder='Date' id='option-date'><br><br>" +
       "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "Actions : <input placeholder='Nombre et catégories' id='option-shares'><br><br>" +
       "Prix de vente : <input placeholder='Prix de vente' id='option-price'><br><br>" +
       "Commentaires : <input placeholder='Description' id='option-comments'>",
     "dividendes": 
-      "Date : <input type='date' placeholder='Date' id='option-date'><br><br>" +
+      "Date : <br><input type='date' placeholder='Date' id='option-date'><br><br>" +
       "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "Montant du dividende : <input placeholder='Montant du dividende' id='option-price'>" + 
       "<a id='option-shares'></a>" + // invisible...
       "Commentaires : <input placeholder='Description' id='option-comments'>",
     "fiducie":
-      "Date : <input type='date' placeholder='Date' id='option-date'>" +
+      "Date : <br><input type='date' placeholder='Date' id='option-date'>" +
       "Nom : <input placeholder='Nom' id='option-company'><br><br>" + 
       "<a id='option-price'></a>" + // invisible... 
       "<a id='option-shares'></a>" + // invisible...
       "Commentaires : <input placeholder='Description' id='option-comments'>",
     "echange":
-      "Date : <input type='date' placeholder='Date' id='option-date'><br><br>" +  
+      "Date : <br><input type='date' placeholder='Date' id='option-date'><br><br>" +  
       "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "Actions : <input placeholder='Nombre et catégories' id='option-shares'><br><br>" +
       "Contrepartie : <input placeholder='Contrepartie en actions' id='option-price'>" + 
       "Commentaires : <input placeholder='Description' id='option-comments'>",
     "souscription":
-      "Date : <input type='date' placeholder='Date' id='option-date'><br><br>" +  
+      "Date : <br><input type='date' placeholder='Date' id='option-date'><br><br>" +  
       "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "Prix de souscription : <input placeholder='Prix de souscription' id='option-price'>" +
       "<a id='option-shares'></a>" + // invisible...
       "Commentaires : <input placeholder='Description' id='option-comments'>",
     "other":
-      "Date : <input type='date' placeholder='Date' id='option-date'><br><br>" +  
+      "Date : <br><input type='date' placeholder='Date' id='option-date'><br><br>" +  
       "Description de l'étape : <input placeholder='Description' id='option-comments'><br><br>" + 
       "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "Actions : <input placeholder='Nombre et catégories' id='option-shares'><br><br>" +
