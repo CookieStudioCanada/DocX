@@ -95,7 +95,7 @@ function displayArray() {
         form.appendChild(typeInput);
     
         var dateLabel = document.createElement("label");
-        dateLabel.innerHTML = "Date: ";
+        dateLabel.innerHTML = "Date: \n";
         form.appendChild(dateLabel);
     
         var dateInput = document.createElement("input");
@@ -178,7 +178,7 @@ function displayArray() {
 }
 
 // Les textes pour les inputs
-var optionTexts = {
+var optionTexts = { 
     "incorporation": 
       "Date : <br><input type='date' placeholder='Date' id='option-date'><br><br>" +
       "Nom : <input placeholder='Nom' id='option-company'><br><br>" + 
@@ -186,7 +186,7 @@ var optionTexts = {
       "Prix de souscription : <input placeholder='Prix de souscription' id='option-price'><br><br>" +
       "Commentaires : <input placeholder='Description' id='option-comments'>",
     "dissolution": 
-      "Date : <br><input type='date' placeholder='Date' id='option-date'>" +
+      "Date : <br><input type='date' placeholder='Date' id='option-date'><br><br>" +
       "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "<a id='option-shares'></a>" + // invisible...
       "<a id='option-price'></a>" + // invisible...
@@ -204,7 +204,7 @@ var optionTexts = {
       "<a id='option-shares'></a>" + // invisible...
       "Commentaires : <input placeholder='Description' id='option-comments'>",
     "fiducie":
-      "Date : <br><input type='date' placeholder='Date' id='option-date'>" +
+      "Date : <br><input type='date' placeholder='Date' id='option-date'><br><br>" +
       "Nom : <input placeholder='Nom' id='option-company'><br><br>" + 
       "<a id='option-price'></a>" + // invisible... 
       "<a id='option-shares'></a>" + // invisible...
@@ -213,12 +213,12 @@ var optionTexts = {
       "Date : <br><input type='date' placeholder='Date' id='option-date'><br><br>" +  
       "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "Actions : <input placeholder='Nombre et catégories' id='option-shares'><br><br>" +
-      "Contrepartie : <input placeholder='Contrepartie en actions' id='option-price'>" + 
+      "Contrepartie : <input placeholder='Contrepartie en actions' id='option-price'><br><br>" + 
       "Commentaires : <input placeholder='Description' id='option-comments'>",
     "souscription":
       "Date : <br><input type='date' placeholder='Date' id='option-date'><br><br>" +  
       "Société : <input placeholder='Société' id='option-company'><br><br>" + 
-      "Prix de souscription : <input placeholder='Prix de souscription' id='option-price'>" +
+      "Prix de souscription : <input placeholder='Prix de souscription' id='option-price'><br><br>" +
       "<a id='option-shares'></a>" + // invisible...
       "Commentaires : <input placeholder='Description' id='option-comments'>",
     "other":
