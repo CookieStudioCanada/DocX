@@ -95,7 +95,7 @@ function displayArray() {
         form.appendChild(typeInput);
     
         var dateLabel = document.createElement("label");
-        dateLabel.innerHTML = "Date: \n";
+        dateLabel.innerHTML = "Date: " + "\n";
         form.appendChild(dateLabel);
     
         var dateInput = document.createElement("input");
@@ -104,7 +104,7 @@ function displayArray() {
         form.appendChild(dateInput);
     
         var sharesLabel = document.createElement("label");
-        sharesLabel.innerHTML = "Actions: ";
+        sharesLabel.innerHTML = "\n" + "Actions: ";
         form.appendChild(sharesLabel);
     
         var sharesInput = document.createElement("input");
