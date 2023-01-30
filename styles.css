@@ -1,11 +1,13 @@
 html, body {
     overflow-x: hidden;
+    font-family: Arial, Helvetica, sans-serif;
 }
   
 body {
     margin: 0;
     position: relative;
 }
+
 
 table {
     width: 100%;
@@ -33,6 +35,9 @@ table {
     margin: 0px;
     padding: 10px;
 }
+
+/* Select... */
+
 select {
     appearance: none;
     width: 100%;
@@ -110,6 +115,16 @@ select {
     background-color: #3e8e41;
   }
 
+/* Modify and delete */
+
+.tab-btn {
+  border:  #4CAF50 dashed 1px;
+  background-color: white;
+  color: black
+}
+
+/* Headings */
+
 h1 {
     text-align: center;
     margin: 10px
@@ -138,3 +153,40 @@ input {
   background-color: #f1f1f1;
   font-size: 16px;
 }
+
+/* The modal window */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal content */
+.modal-content {
+  background-color: white;
+  margin: 10% auto; /* 15% from the top and centered */
+  padding: 10px;
+  border: 1px solid rgb(0, 0, 0);
+  width: 85%; /* Could be more or less, depending on screen size */
+}
+
+/* The close button 
+.close {
+  color: rgb(0, 0, 0);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  text-decoration: none;
+  cursor: pointer;
+}*/

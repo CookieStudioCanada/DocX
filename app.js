@@ -17,6 +17,7 @@ var selectedOption = {
   comments: optionComments || "N/A"
 };
 
+// Ajouter l'étape
 function addToArray() {
   var select = document.getElementById("options");
   optionName = select.value;
@@ -34,21 +35,37 @@ function addToArray() {
   displayArray(); // ajouter l'etape a la liste
 }
 
+// Tables
 var table = document.getElementById("result");
+
 function displayArray() {
+
   table.innerHTML = "";
   var tableElem = document.createElement("table");
   var headerRow = document.createElement("tr");
+
   var headerCell1 = document.createElement("th");
-  headerCell1.innerHTML = "Step Number";
+  headerCell1.innerHTML = "Étape";
   headerRow.appendChild(headerCell1);
+
   var headerCell2 = document.createElement("th");
-  headerCell2.innerHTML = "Step";
+  headerCell2.innerHTML = "Type";
   headerRow.appendChild(headerCell2);
+
   var headerCell3 = document.createElement("th");
   headerCell3.innerHTML = "Date";
   headerRow.appendChild(headerCell3);
+
+  var headerCell4 = document.createElement("th");
+  headerCell4.innerHTML = "Modifier";
+  headerRow.appendChild(headerCell4);
+
+  var headerCell5 = document.createElement("th");
+  headerCell5.innerHTML = "X";
+  headerRow.appendChild(headerCell5);
+  
   tableElem.appendChild(headerRow);
+
   for (var i = 0; i < optionsArray.length; i++) {
     var row = document.createElement("tr");
     var cell1 = document.createElement("td");
@@ -60,65 +77,160 @@ function displayArray() {
     var cell3 = document.createElement("td");
     cell3.innerHTML = optionsArray[i].date;
     row.appendChild(cell3);
+    var cell4 = document.createElement("td");
+    var modifyButton = document.createElement("button");
+    modifyButton.innerHTML = "Modifier";
+    modifyButton.className= "tab-btn";
+    modifyButton.onclick = function(index) { 
+      return function() {
+    
+        var form = document.createElement("form");
+
+        var typeLabel = document.createElement("label");
+        typeLabel.innerHTML = "Type: ";
+        form.appendChild(typeLabel);
+    
+        var typeInput = document.createElement("input");
+        typeInput.value = optionsArray[index].name;
+        form.appendChild(typeInput);
+    
+        var dateLabel = document.createElement("label");
+        dateLabel.innerHTML = "Date: ";
+        form.appendChild(dateLabel);
+    
+        var dateInput = document.createElement("input");
+        dateInput.value = optionsArray[index].date;
+        dateInput.type = "date";
+        form.appendChild(dateInput);
+    
+        var sharesLabel = document.createElement("label");
+        sharesLabel.innerHTML = "Actions: ";
+        form.appendChild(sharesLabel);
+    
+        var sharesInput = document.createElement("input");
+        sharesInput.value = optionsArray[index].shares;
+        form.appendChild(sharesInput);
+    
+        var priceLabel = document.createElement("label");
+        priceLabel.innerHTML = "Montant: ";
+        form.appendChild(priceLabel);
+    
+        var priceInput = document.createElement("input");
+        priceInput.value = optionsArray[index].price;
+        form.appendChild(priceInput);
+    
+        var companyLabel = document.createElement("label");
+        companyLabel.innerHTML = "Société: ";
+        form.appendChild(companyLabel);
+    
+        var companyInput = document.createElement("input");
+        companyInput.value = optionsArray[index].company;
+        form.appendChild(companyInput);
+    
+        var commentsLabel = document.createElement("label");
+        commentsLabel.innerHTML = "Commentaires: ";
+        form.appendChild(commentsLabel);
+    
+        var commentsInput = document.createElement("input");
+        commentsInput.value = optionsArray[index].comments;
+        form.appendChild(commentsInput);
+    
+        var updateButton = document.createElement("button");
+        updateButton.innerHTML = "Mise à jour";
+        updateButton.onclick = function() {
+          optionsArray[index].name = typeInput.value;
+          optionsArray[index].date = dateInput.value;
+          optionsArray[index].shares = sharesInput.value;
+          optionsArray[index].price = priceInput.value;
+          optionsArray[index].company = companyInput.value;
+          optionsArray[index].comments = commentsInput.value;
+          displayArray();
+          form.remove();
+          modal.style.display = "none";
+        };
+        
+        form.appendChild(updateButton); // Doit juste le faire une fois...
+        openModal(form);
+      };
+    }(i);
+    modifyButton.id = "modifyButton" + i;
+    cell4.appendChild(modifyButton);
+    row.appendChild(cell4);
+    var cell5 = document.createElement("td");
+    var deleteButton = document.createElement("button");
+    deleteButton.innerHTML = "X";
+    deleteButton.className = "tab-btn";
+    deleteButton.onclick = (function (index) {
+      return function () {
+        optionsArray.splice(index, 1);
+        displayArray();
+        if(optionsArray.length === 0) {
+          table.innerHTML = "";
+        }        
+      };
+    })(i);
+    deleteButton.id = "deleteButton" + i;
+    cell5.appendChild(deleteButton);
+    row.appendChild(cell5);
     tableElem.appendChild(row);
   }
   table.appendChild(tableElem);
 }
 
-  var optionTexts = {
+// Les textes pour les inputs
+var optionTexts = {
     "incorporation": 
       "Date : <input type='date' placeholder='Date' id='option-date'><br><br>" +
       "Nom : <input placeholder='Nom' id='option-company'><br><br>" + 
       "Actions : <input placeholder='Nombre et catégories' id='option-shares'><br><br>" +
-      "Prix de souscription : <input placeholder='Prix de souscription' id='option-price'>" +
-      "<a id='option-comments'></a>", // invisible...
+      "Prix de souscription : <input placeholder='Prix de souscription' id='option-price'><br><br>" +
+      "Commentaires : <input placeholder='Description' id='option-comments'>",
     "dissolution": 
       "Date : <input type='date' placeholder='Date' id='option-date'>" +
       "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "<a id='option-shares'></a>" + // invisible...
       "<a id='option-price'></a>" + // invisible...
-      "<a id='option-comments'></a>", // invisible...
+      "Commentaires : <input placeholder='Description' id='option-comments'>",
     "vente d'actions": 
       "Date : <input type='date' placeholder='Date' id='option-date'><br><br>" +
       "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "Actions : <input placeholder='Nombre et catégories' id='option-shares'><br><br>" +
-      "Prix de vente : <input placeholder='Prix de vente' id='option-price'>" +
-      "<a id='option-comments'></a>", // invisible...
+      "Prix de vente : <input placeholder='Prix de vente' id='option-price'><br><br>" +
+      "Commentaires : <input placeholder='Description' id='option-comments'>",
     "dividendes": 
       "Date : <input type='date' placeholder='Date' id='option-date'><br><br>" +
       "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "Montant du dividende : <input placeholder='Montant du dividende' id='option-price'>" + 
       "<a id='option-shares'></a>" + // invisible...
-      "<a id='option-comments'></a>", // invisible...
+      "Commentaires : <input placeholder='Description' id='option-comments'>",
     "fiducie":
       "Date : <input type='date' placeholder='Date' id='option-date'>" +
       "Nom : <input placeholder='Nom' id='option-company'><br><br>" + 
       "<a id='option-price'></a>" + // invisible... 
       "<a id='option-shares'></a>" + // invisible...
-      "<a id='option-comments'></a>", // invisible...
+      "Commentaires : <input placeholder='Description' id='option-comments'>",
     "echange":
       "Date : <input type='date' placeholder='Date' id='option-date'><br><br>" +  
       "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "Actions : <input placeholder='Nombre et catégories' id='option-shares'><br><br>" +
       "Contrepartie : <input placeholder='Contrepartie en actions' id='option-price'>" + 
-      "<a id='option-comments'></a>", // invisible...
+      "Commentaires : <input placeholder='Description' id='option-comments'>",
     "souscription":
       "Date : <input type='date' placeholder='Date' id='option-date'><br><br>" +  
       "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "Prix de souscription : <input placeholder='Prix de souscription' id='option-price'>" +
       "<a id='option-shares'></a>" + // invisible...
-      "<a id='option-comments'></a>", // invisible...
+      "Commentaires : <input placeholder='Description' id='option-comments'>",
     "other":
       "Date : <input type='date' placeholder='Date' id='option-date'><br><br>" +  
       "Description de l'étape : <input placeholder='Description' id='option-comments'><br><br>" + 
       "Société : <input placeholder='Société' id='option-company'><br><br>" + 
       "Actions : <input placeholder='Nombre et catégories' id='option-shares'><br><br>" +
       "Contrepartie : <input placeholder='Contrepartie' id='option-price'>",
-  };
+};
 
-  // Le texte qu'on va voir dans le document word
-  // Pourrait aussi etre un JSON, change quoi?
-  var docTexts = { 
+// Les textes pour le document Word
+var docTexts = { 
     "incorporation": 
       "Le ${optionsArray[step-number].date}, la société ${optionsArray[step-number].company} sera créer." +
       "\n\n" +
@@ -145,9 +257,9 @@ function displayArray() {
       "Actions : ${optionsArray[step-number].shares}" +
       "\n\n" +
       "Contrepartie : ${optionsArray[step-number].price}",
-  }
+}
   
-  // OnChange dans le dropdown, pour afficher "optionTexts"
+// OnChange dans le dropdown, pour afficher "optionTexts"
   function addStepForm() {
     var stepform = document.getElementById("step-form");
     var select = document.getElementById("options");
@@ -157,11 +269,14 @@ function displayArray() {
   }
 
 // Creation du document
-// Pour l'instant, ne peut que créer le doc si exactement 5 steps... le Loop sera vraiment necessaire
 function generate() {
   
-  // Maniere de loop?
-  // JSON ou document externe? Similaire a "objet"?
+  var wordDoc = []; // string Doc
+
+  var fileName = prompt("Please enter the file name.");
+  // ask user for file name...
+
+  /* 
   var step1 = docTexts[optionsArray[0].name]; 
   var step2 = docTexts[optionsArray[1].name];
   var step3 = docTexts[optionsArray[2].name];
@@ -192,6 +307,18 @@ function generate() {
   step5 = step5.replace(/\$\{(.*?)\}/g, function (match, expression) {
     return eval(expression);
   });
+  */
+
+  // Supposement que eval = risque...
+  for (var i = 0; i < optionsArray.length; i++) {
+    eval("var step" + (i + 1) + " = docTexts[optionsArray[" + i + "].name]");
+    eval("step" + (i + 1) + " = step" + (i + 1) + ".replace(/step-number/g, " + i + ")");
+    eval("step" + (i + 1) + " = step" + (i + 1) + ".replace(/\\$\\{(.*?)\\}/g, function (match, expression) { return eval(expression); });");
+    eval("wordDoc.push(\"Étape #" + (i + 1) + "\\n\" + step" + (i + 1) + ")");
+    console.log(wordDoc);
+  }
+
+  var arrayOfSteps = wordDoc.join("\n\n");
 
   const doc = new docx.Document({
     sections: [{
@@ -200,47 +327,7 @@ function generate() {
         new docx.Paragraph({
           children: [
             new docx.TextRun({
-              text: "Step 1 : \n\n" + step1,
-            }),
-          ],
-        }),
-        new docx.Paragraph({
-          children: [],
-        }),
-        new docx.Paragraph({
-          children: [
-            new docx.TextRun({
-              text: "Step 2 : \n\n" + step2,
-            }),
-          ],
-        }),
-        new docx.Paragraph({
-          children: [],
-        }),
-        new docx.Paragraph({
-          children: [
-            new docx.TextRun({
-              text: "Step 3 : \n\n" + step3,
-            }),
-          ],
-        }),
-        new docx.Paragraph({
-          children: [],
-        }),
-        new docx.Paragraph({
-          children: [
-            new docx.TextRun({
-              text: "Step 4 : \n\n" + step4,
-            }),
-          ],
-        }),
-        new docx.Paragraph({
-          children: [],
-        }),
-        new docx.Paragraph({
-          children: [
-            new docx.TextRun({
-              text: "Step 5 : \n\n" + step5,
+              text: arrayOfSteps,
             }),
           ],
         }),
@@ -250,7 +337,34 @@ function generate() {
 
   docx.Packer.toBlob(doc).then(blob => {
     console.log(blob);
-    saveAs(blob, "test-parag.docx");
+    saveAs(blob, fileName + ".docx");
     alert("Document created successfully. Check your downloads.");
   });
 }
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// When the user clicks the button, open the modal 
+function openModal(form) {
+  modal.style.display = "block";
+  document.getElementById("modal-message").appendChild(form);
+}
+
+/*
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+*/
