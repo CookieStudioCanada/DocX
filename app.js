@@ -320,6 +320,7 @@ function generate() {
 
   var arrayOfSteps = wordDoc.join("\n\n");
 
+  // loop here?
   const doc = new docx.Document({
     sections: [{
       properties: {},
